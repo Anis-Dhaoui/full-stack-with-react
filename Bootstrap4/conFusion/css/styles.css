@@ -1,0 +1,83 @@
+.row-header{
+    margin: 0px auto;
+    padding: 0px;
+}
+
+.row-content{
+    margin: 0px auto;
+    padding: 50px 0;
+    border-bottom: 1px ridge;
+    min-height: 400px;
+}
+
+.footer{
+    background-color: #D1C4E9;
+    margin: 0px auto;
+    padding: 20px 0;
+}
+
+.jumbotron{
+    margin: 0px auto;
+    padding: 70px 30px;
+    background: #9575CD;
+    color: floralwhite;
+}
+
+address{
+    font-size: 80%;
+    color: #0f0f0f;
+    margin: 0px;
+}
+
+body{
+    padding: 50px 0 0 0;
+    z-index: 0;
+}
+
+.navbar-dark{
+    background-color: #512DA8;
+}
+
+div.text-center a{
+    padding: 20px;
+}
+
+.tab-content{
+    border: 1px solid #ddd;
+    border-top: 0;
+    padding: 0px 20px;
+}
+
+.carousel{
+    background:#512DA8;
+}
+
+.carousel-item{
+    height: 300px;
+}
+
+.carousel-item img{
+    min-height: 300px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#playPause{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.modal-header{
+    background: #512DA8;
+    color: floralwhite;
+}
+
+.modal-body, .modal-footer{
+    background: #D1C4E9;
+}
+
+.modal-title ~ .close{
+    color: floralwhite;
+}
