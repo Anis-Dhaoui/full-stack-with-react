@@ -30,7 +30,7 @@ class DishDetail extends Component{
                 return(
                     <ul className="list-unstyled mt-4 ml-1">
                         <li style={{font:"18px Arial, sans-serif"}}>{item.comment}</li>
-                        <li style={{color:"gray"}}>    -- {item.author}, <strong>{finalDate}</strong></li>
+                        <li style={{color:"gray"}}> -- <strong>{item.author}, </strong> {finalDate}</li>
                     </ul>
                       )
                })
