@@ -3,10 +3,6 @@ import {Card, CardImg, CardTitle, CardText, CardBody} from 'reactstrap';
 
 class DishDetail extends Component{
 
-    constructor(props){
-        super(props);
-    };
-
     renderDish(dish){
         if(dish != null){
             return (
@@ -28,7 +24,7 @@ class DishDetail extends Component{
                 let splittedDate = item.date.split("-");
                 let finalDate = new Date(splittedDate[0], splittedDate[1] - 1, splittedDate[2].slice(0,2)).toDateString();
                 return(
-                    <ul className="list-unstyled mt-4 ml-1">
+                    <ul className="list-unstyled pb-3">
                         <li style={{font:"18px Arial, sans-serif"}}>{item.comment}</li>
                         <li style={{color:"gray"}}> -- <strong>{item.author}, </strong> {finalDate}</li>
                     </ul>
@@ -36,7 +32,7 @@ class DishDetail extends Component{
                })
             return(
                 <div>
-                    <h4>Comments</h4>
+                    <h4 className="pb-4">Comments</h4>
                     {result}
                 </div>
             )
