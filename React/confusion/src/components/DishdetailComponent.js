@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {Card, CardImg, CardTitle, CardText, CardBody} from 'reactstrap';
 
-class DishDetail extends Component{
 
-    renderDish(dish){
+   function RenderDish ({dish}){
+    console.log(dish);
         if(dish != null){
             return (
                 <Card>
@@ -14,13 +14,12 @@ class DishDetail extends Component{
                     </CardBody>
                 </Card>
             )
-        }
+        }else return (<div></div>);
     };
 
-    renderComments(dish) {
-        if (dish != null){
-            const arrOfCmnts = dish.comments;
-            let result = arrOfCmnts.map((item) =>{
+    function RenderComments ({cmnts}) {
+        if (cmnts != null){
+            let result = cmnts.map((item) =>{
                 let splittedDate = item.date.split("-");
                 let finalDate = new Date(splittedDate[0], splittedDate[1] - 1, splittedDate[2].slice(0,2)).toDateString();
                 return(
@@ -36,24 +35,20 @@ class DishDetail extends Component{
                     {result}
                 </div>
             )
-        };
+        }else return (<div></div>);
 }
 
-    render(){
-       const renderedDish = this.renderDish(this.props.dish);
-       const renderedComments = this.renderComments(this.props.dish);
-
+const DishDetail = (props) => {
         return(
             <div className="row">
                 <div className="col-12 col-md-5 m-1">
-                    {renderedDish}
+                    <RenderDish dish={props.dish} />
                 </div>
                 <div className="col-12 col-md-5 m-1">
-                    {renderedComments}
+                    <RenderComments cmnts={props.cmnts} />
                 </div>
             </div>
         )
-    }
-}
+    };
 
 export default DishDetail;
