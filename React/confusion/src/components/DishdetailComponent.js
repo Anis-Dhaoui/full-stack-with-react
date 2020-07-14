@@ -19,7 +19,7 @@ import {Card, CardImg, CardTitle, CardText, CardBody} from 'reactstrap';
 
     function RenderComments ({cmnts}) {
         if (cmnts != null){
-            let result = cmnts.map((item) =>{
+            let comment = cmnts.map((item) =>{
                 let splittedDate = item.date.split("-");
                 let finalDate = new Date(splittedDate[0], splittedDate[1] - 1, splittedDate[2].slice(0,2)).toDateString();
                 return(
@@ -32,7 +32,7 @@ import {Card, CardImg, CardTitle, CardText, CardBody} from 'reactstrap';
             return(
                 <div>
                     <h4 className="pb-4">Comments</h4>
-                    {result}
+                    {comment}
                 </div>
             )
         }else return (<div></div>);
