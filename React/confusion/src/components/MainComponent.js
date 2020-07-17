@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect} from 'react-router-dom';
 import Home from "./HomeComponent";
 import Menu from "./MenuComponent";
 import DishDetail from './DishdetailComponent';
@@ -33,6 +33,15 @@ class Main extends Component {
         />
       );
     };
+
+    const dishWithId = ({match}) =>{
+      return(
+        <DishDetail dish={this.state.dishes.filter((ddItem) =>  ddItem.id === parseInt(match.params.dishId, 10))[0]} 
+                    cmnts={this.state.comments.filter((cmntsItem) => cmntsItem.dishId === parseInt(match.params.dishId, 10))}
+        />
+      );
+      
+    };
   return (
     <div>
       <Header />
@@ -41,6 +50,7 @@ class Main extends Component {
           <Route path="/home" component={homePage} />
           <Route exact path="/menu" component={() => <Menu dishes2={this.state.dishes} />} />
           <Route path="/contactus" component={Contact} />
+          <Route path="/menu/:dishId" component={dishWithId}  />
           <Redirect to="/home" />
         </Switch>
       </div>
