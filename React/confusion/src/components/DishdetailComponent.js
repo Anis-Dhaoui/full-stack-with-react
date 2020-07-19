@@ -4,7 +4,7 @@ import { Breadcrumb, BreadcrumbItem} from 'reactstrap';
 import {Link} from 'react-router-dom';
 
 
-   function RenderDish ({dish}){
+function RenderDish ({dish}){
     console.log(dish);
         if(dish != null){
             return (
@@ -19,7 +19,7 @@ import {Link} from 'react-router-dom';
         }else return (<div></div>);
     };
 
-    function RenderComments ({cmnts}) {
+function RenderComments ({cmnts}) {
         if (cmnts != null){
             let comment = cmnts.map((item) =>{
                 let splittedDate = item.date.split("-");

@@ -1,5 +1,5 @@
 import React from 'react';
-import RenderCard from './RenderComponent';
+import {RenderCard} from './RenderComponent';
 
 function Home (props) {
     return(
