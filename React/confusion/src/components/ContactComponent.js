@@ -44,7 +44,6 @@ class Contact extends Component{
         this.setState({
             touched:{...this.state.touched, [field]: true}
         });
-        console.log(this.state.touched.firstName);
     };
 
     validate(firstName, lastName, telNum, email){
