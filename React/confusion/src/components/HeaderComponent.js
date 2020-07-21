@@ -28,7 +28,7 @@ class Header extends Component{
 
   handleLogin(event){
     alert("User Name: " + this.user.value + " Password: " + this.pwd.value + " Remember: " + this.remember.checked);
-    event.prevenDefaul();
+    event.preventDefault();
   };
   render(){
     return(
