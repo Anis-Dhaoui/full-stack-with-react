@@ -3,8 +3,8 @@ import { Breadcrumb, BreadcrumbItem, Label, Button, Col, Row} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { LocalForm, Control, Errors} from 'react-redux-form';
 
-const required = (val) => val;
-const minMaxLength = (minLen, maxLen) => (val) => !val || (val.length >= minLen && val.length <= maxLen);
+export const required = (val) => val;
+export const minMaxLength = (minLen, maxLen) => (val) => !val || (val.length >= minLen && val.length <= maxLen);
 const isNumber = (val) => !isNaN(val);
 const validEmail = (val) => !val || /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
   
