@@ -1,6 +1,9 @@
 import React from 'react';
-import { Card, CardImg, CardTitle, CardSubtitle, CardBody, CardText, Media } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import { Card, CardImg, CardImgOverlay, CardTitle, CardSubtitle, CardBody, CardText, Media } from 'reactstrap';
 
+
+//This Component for the Home Page
 export function RenderCard({item}) {
     return(
         <Card>
@@ -14,6 +17,7 @@ export function RenderCard({item}) {
     );
 };
 
+//This Component for the About Page
 export function RenderLeader({leader}){
     return(
         <div key={leader.id} className="mt-3">
@@ -29,4 +33,56 @@ export function RenderLeader({leader}){
             </Media>
         </div>
     )
+};
+
+//This Component for the Menu Page
+export function RenderMenuItem({dishx}) {
+    return(
+      <Link to={`/menu/${dishx.id}`}>
+        <Card key={dishx.id}>
+            <CardImg width="100%" src={dishx.image} alt={dishx.name} />
+            <CardImgOverlay>
+                <CardTitle>{dishx.name}</CardTitle>
+            </CardImgOverlay>
+        </Card>
+      </Link>
+  
+    )
+  };
+
+ //This Component for the menu item Description in the Menu Page that exported to the DishdetailComponet file
+export function RenderDish ({dish}){
+        if(dish != null){
+            return (
+                <Card>
+                    <CardImg with="100%" src={dish.image} alt={dish.name} />
+                    <CardBody>
+                        <CardTitle>{dish.name}</CardTitle>
+                        <CardText>{dish.description}</CardText>
+                    </CardBody>
+                </Card>
+            )
+        }else return (<div></div>);
+};
+
+ //This Component for the menu item Comments in the Menu Page that exported to the DishdetailComponet file
+export function RenderComments ({cmnts}) {
+        if (cmnts != null){
+            let comment = cmnts.map((item) =>{
+                let splittedDate = item.date.split("-");
+                let finalDate = new Date(splittedDate[0], splittedDate[1] - 1, splittedDate[2].slice(0,2)).toDateString();
+                return(
+                    <ul className="list-unstyled pb-3">
+                        <li style={{font:"18px Arial, sans-serif"}}>{item.comment}</li>
+                        <li style={{color:"gray"}}> -- <strong>{item.author}, </strong> {finalDate}</li>
+                    </ul>
+                      )
+               })
+            return(
+                <div>
+                    <h4 className="pb-4">Comments</h4>
+                    {comment}
+                </div>
+            )
+        }else return (<div></div>);
 };

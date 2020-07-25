@@ -12,10 +12,6 @@ import { mapStateToProps } from '../redux/connectStore';
 
 class Main extends Component {
   
-  constructor(props){
-    super(props);
-  };
-
   render(){
     const homePage = () =>{
       return(
@@ -28,8 +24,8 @@ class Main extends Component {
 
     const dishWithId = ({match}) =>{
       return(
-        <DishDetail dish={this.props.dishes.filter((ddItem) =>  ddItem.id === parseInt(match.params.dishId, 10))[0]} 
-                    cmnts={this.props.comments.filter((cmntsItem) => cmntsItem.dishId === parseInt(match.params.dishId, 10))}
+        <DishDetail dish={this.props.dishes.filter((ddItem) =>  ddItem.id === parseInt(match.params.dishIdx, 10))[0]} 
+                    cmnts={this.props.comments.filter((cmntsItem) => cmntsItem.dishId === parseInt(match.params.dishIdx, 10))}
         />
       );
       
@@ -42,7 +38,7 @@ class Main extends Component {
           <Route path="/home" component={homePage} />
           <Route path="/aboutus" component={() => <About leaders={this.props.leaders}/>} />
           <Route exact path="/menu" component={() => <Menu dishes2={this.props.dishes} />} />
-          <Route path="/menu/:dishId" component={dishWithId}  />
+          <Route path="/menu/:dishIdx" component={dishWithId}  />
           <Route path="/contactus" component={Contact} />
           <Redirect to="/home" />
         </Switch>

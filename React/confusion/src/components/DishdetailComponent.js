@@ -1,45 +1,8 @@
 import React from 'react';
-import {Card, CardImg, CardTitle, CardText, CardBody} from 'reactstrap';
 import { Breadcrumb, BreadcrumbItem} from 'reactstrap';
 import {Link} from 'react-router-dom';
 import FormComment from './CommentFormComponent';
-
-
-function RenderDish ({dish}){
-    console.log(dish);
-        if(dish != null){
-            return (
-                <Card>
-                    <CardImg with="100%" src={dish.image} alt={dish.name} />
-                    <CardBody>
-                        <CardTitle>{dish.name}</CardTitle>
-                        <CardText>{dish.description}</CardText>
-                    </CardBody>
-                </Card>
-            )
-        }else return (<div></div>);
-    };
-
-function RenderComments ({cmnts}) {
-        if (cmnts != null){
-            let comment = cmnts.map((item) =>{
-                let splittedDate = item.date.split("-");
-                let finalDate = new Date(splittedDate[0], splittedDate[1] - 1, splittedDate[2].slice(0,2)).toDateString();
-                return(
-                    <ul className="list-unstyled pb-3">
-                        <li style={{font:"18px Arial, sans-serif"}}>{item.comment}</li>
-                        <li style={{color:"gray"}}> -- <strong>{item.author}, </strong> {finalDate}</li>
-                    </ul>
-                      )
-               })
-            return(
-                <div>
-                    <h4 className="pb-4">Comments</h4>
-                    {comment}
-                </div>
-            )
-        }else return (<div></div>);
-}
+import { RenderDish, RenderComments} from './RenderComponent';
 
 const DishDetail = (props) => {
         return(
