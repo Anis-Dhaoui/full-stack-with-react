@@ -8,7 +8,7 @@ import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import Contact from './ContactComponent';
 import About from './AboutComponent';
-import { mapStateToProps } from '../redux/connectStore';
+import { mapStateToProps, mapDispatchToProps } from '../redux/connectStore';
 
 class Main extends Component {
   
@@ -26,6 +26,7 @@ class Main extends Component {
       return(
         <DishDetail dish={this.props.dishes.filter((ddItem) =>  ddItem.id === parseInt(match.params.dishIdx, 10))[0]} 
                     cmnts={this.props.comments.filter((cmntsItem) => cmntsItem.dishId === parseInt(match.params.dishIdx, 10))}
+                    addCmnt={this.props.addComment}
         />
       );
       
@@ -49,4 +50,4 @@ class Main extends Component {
   }
 }
 
-export default withRouter(connect(mapStateToProps) (Main));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps) (Main));

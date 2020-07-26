@@ -1,8 +1,8 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem} from 'reactstrap';
 import {Link} from 'react-router-dom';
-import FormComment from './CommentFormComponent';
 import { RenderDish, RenderComments} from './RenderComponent';
+import { CommentForm } from './FormsComponent';
 
 const DishDetail = (props) => {
         return(
@@ -21,8 +21,9 @@ const DishDetail = (props) => {
                         <RenderDish dish={props.dish} />
                     </div>
                     <div className="col-12 col-md-5 m-1">
-                        <RenderComments cmnts={props.cmnts} />
-                        <FormComment />
+                        <RenderComments cmnts={props.cmnts}/>
+                        <CommentForm addCmnt={props.addCmnt} dishId={props.dish.id} />
+
                     </div>
                 </div>
             </div>
