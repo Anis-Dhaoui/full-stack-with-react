@@ -5,13 +5,13 @@ import './App.css';
 import { Provider } from 'react-redux';
 import { ConfigStore } from './redux/configStore';
 
-const store = ConfigStore();
+const storex = ConfigStore();
 
 class App extends Component {
   
   render(){
   return (
-    <Provider store = {store}>
+    <Provider store = {storex}>
       <BrowserRouter>
         <div className="App">
           <Main />

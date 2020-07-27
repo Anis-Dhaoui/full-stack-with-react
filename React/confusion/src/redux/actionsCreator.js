@@ -1,11 +1,11 @@
 import * as actiontype  from './actionsType'
 
-export const addComment = (dishId, rating, author, comment) =>({
+export const addComment = (dishIdx, ratingx, authorx, commentx) =>({
     type: actiontype.ADD_COMMENT,
     payload:{
-        dishId: dishId,
-        rating: rating,
-        author: author,
-        comment: comment
+        dishId: dishIdx,
+        rating: ratingx,
+        author: authorx,
+        comment: commentx
     }
 });

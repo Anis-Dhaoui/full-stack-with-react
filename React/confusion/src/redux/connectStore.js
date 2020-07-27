@@ -1,12 +1,12 @@
 import { addComment } from './actionsCreator';
 
 //Connect the app to the Redux Store 
-export const mapStateToProps = (props) =>{
+export const mapStateToProps = (x) =>{
     return{
-        dishes: props.dishes,
-        comments: props.comments,
-        promotions: props.promotions,
-        leaders: props.leaders    
+        dishes: x.dishes,
+        comments: x.comments,
+        promotions: x.promotions,
+        leaders: x.leaders
     };
   };
   
