@@ -1,4 +1,4 @@
-import { addComment } from './actionsCreator';
+import { addComment, fetshDishes } from './actionsCreator';
 
 //Connect the app to the Redux Store 
 export const mapStateToProps = (x) =>{
@@ -10,7 +10,8 @@ export const mapStateToProps = (x) =>{
     };
   };
   
-//Connect...
+//This Dispatch Function help us to Connect the action "addComment" function with the Reducer function Comments
   export const mapDispatchToProps = (dispatch) =>({
-      addComment: (dishId, rating, author, comment) => dispatch(addComment(dishId, rating, author, comment))
+      addComment: (dishId, rating, author, comment) => dispatch(addComment(dishId, rating, author, comment)),
+      fetshDishes: () => {dispatch(fetshDishes())}
   })

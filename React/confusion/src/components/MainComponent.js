@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route, Redirect, withRouter} from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Home from "./HomeComponent";
 import Menu from "./MenuComponent";
@@ -11,11 +11,17 @@ import About from './AboutComponent';
 import { mapStateToProps, mapDispatchToProps } from '../redux/connectStore';
 
 class Main extends Component {
+
+  componentDidMount(){
+    this.props.fetshDishes();
+  }
   
   render(){
     const homePage = () =>{
       return(
-        <Home dish={this.props.dishes.filter((dishItem) => dishItem.featured)[0]}
+        <Home dish={this.props.dishes.mountedDishes.filter((dishItem) => dishItem.featured)[0]}
+              dishesLoading={this.props.dishes.isLoading}
+              dishesErrorMsg={this.props.dishes.errMsg}
               promo={this.props.promotions.filter((promoItem) => promoItem.featured)[0]} 
               leader={this.props.leaders.filter((leaderItem) => leaderItem.featured)[0]}
         />
@@ -24,7 +30,9 @@ class Main extends Component {
 
     const dishWithId = ({match}) =>{
       return(
-        <DishDetail dish={this.props.dishes.filter((ddItem) =>  ddItem.id === parseInt(match.params.dishIdx, 10))[0]} 
+        <DishDetail dish={this.props.dishes.mountedDishes.filter((ddItem) =>  ddItem.id === parseInt(match.params.dishIdx, 10))[0]}
+                    loading={this.props.dishes.isLoading}
+                    errorMsg={this.props.dishes.errMsg}
                     cmnts={this.props.comments.filter((cmntsItem) => cmntsItem.dishId === parseInt(match.params.dishIdx, 10))}
                     addCmnt={this.props.addComment}
         />
@@ -37,8 +45,8 @@ class Main extends Component {
       <div className="container">
         <Switch>
           <Route path="/home" component={homePage} />
-          <Route path="/aboutus" component={() => <About leaders={this.props.leaders}/>} />
-          <Route exact path="/menu" component={() => <Menu dishes2={this.props.dishes} />} />
+          <Route path="/aboutus" component={  () => <About leaders={this.props.leaders}/>  } />
+          <Route exact path="/menu" component={  () => <Menu dishes2={this.props.dishes} />  } />
           <Route path="/menu/:dishIdx" component={dishWithId}  />
           <Route path="/contactus" component={Contact} />
           <Redirect to="/home" />

@@ -36,7 +36,7 @@ export function RenderLeader({leader}){
 };
 
 //This Component for the Menu Page
-export function RenderMenuItem({dishx}) {
+export function RenderMenuItem({dishx}) {  
     return(
       <Link to={`/menu/${dishx.id}`}>
         <Card key={dishx.id}>
@@ -52,7 +52,6 @@ export function RenderMenuItem({dishx}) {
 
  //This Component for the menu item Description in the Menu Page that exported to the DishdetailComponet file
 export function RenderDish ({dish}){
-        if(dish != null){
             return (
                 <Card>
                     <CardImg with="100%" src={dish.image} alt={dish.name} />
@@ -62,27 +61,24 @@ export function RenderDish ({dish}){
                     </CardBody>
                 </Card>
             )
-        }else return (<div></div>);
 };
 
  //This Component for the menu item Comments in the Menu Page that exported to the DishdetailComponet file
 export function RenderComments ({cmnts}) {
-        if (cmnts != null){
-            let comment = cmnts.map((item) =>{
-                let splittedDate = item.date.split("-");
-                let finalDate = new Date(splittedDate[0], splittedDate[1] - 1, splittedDate[2].slice(0,2)).toDateString();
-                return(
-                    <ul className="list-unstyled pb-3">
-                        <li style={{font:"18px Arial, sans-serif"}}>{item.comment}</li>
-                        <li style={{color:"gray"}}> -- <strong>{item.author}, </strong> {finalDate}</li>
-                    </ul>
-                      )
-               })
+        let comment = cmnts.map((item) =>{
+            let splittedDate = item.date.split("-");
+            let finalDate = new Date(splittedDate[0], splittedDate[1] - 1, splittedDate[2].slice(0,2)).toDateString();
             return(
-                <div>
-                    <h4 className="pb-4">Comments</h4>
-                    {comment}
-                </div>
+                <ul className="list-unstyled pb-3">
+                    <li style={{font:"18px Arial, sans-serif"}}>{item.comment}</li>
+                    <li style={{color:"gray"}}> -- <strong>{item.author}, </strong> {finalDate}</li>
+                </ul>
             )
-        }else return (<div></div>);
+        })
+        return(
+            <div>
+                <h4 className="pb-4">Comments</h4>
+                {comment}
+            </div>
+        )
 };

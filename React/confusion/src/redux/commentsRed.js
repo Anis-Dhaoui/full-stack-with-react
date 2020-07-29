@@ -11,5 +11,5 @@ export const Comments = (state = COMMENTS, action) =>{
             
         default:
             return state;
-    }
-}
+    };
+};

@@ -3,8 +3,18 @@ import { Breadcrumb, BreadcrumbItem} from 'reactstrap';
 import {Link} from 'react-router-dom';
 import { RenderDish, RenderComments} from './RenderComponent';
 import { CommentForm } from './FormsComponent';
+import { Loading } from './LoadingComponent';
 
 const DishDetail = (props) => {
+    if(props.loading === true){
+        return(
+                <Loading />
+        );
+    } else if(props.errorMsg){
+      return(
+          <h4>Error Message By Anis</h4>
+       )
+    }else if(props.dish != null){
         return(
             <div className="container">
                 <div className="row">
@@ -27,7 +37,8 @@ const DishDetail = (props) => {
                     </div>
                 </div>
             </div>
-        )
+        );
+    }else return (<div></div>);
     };
 
 export default DishDetail;
