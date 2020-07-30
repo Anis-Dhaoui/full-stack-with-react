@@ -12,21 +12,21 @@ export const addComment = (dishIdx, ratingx, authorx, commentx) =>({
 });
 
 export const fetshDishes = ()=> (dispatch)=>{
-    dispatch(dishesLoading(true));
+    dispatch(dishesLoading());
 
     setTimeout(() => {
         dispatch(addDishes(DISHES))
-    }, 4000);
+    }, 2000);
 };
 
 export const dishesLoading = ()=>({
     type: actiontype.DISHES_LOADING
 });
 
-export const dishesFailed = (errmsg)=>({
-    type: actiontype.DISHES_FAILED,
-    payload: errmsg
-});
+// export const dishesFailed = (errmsg)=>({
+//     type: actiontype.DISHES_FAILED,
+//     payload: errmsg
+// });
 
 export const addDishes = (dishes)=>({
     type: actiontype.ADD_DISHES,
