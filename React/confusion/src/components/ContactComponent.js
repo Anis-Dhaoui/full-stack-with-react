@@ -3,7 +3,8 @@ import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { ContactForm } from './FormsComponent';  
 
-function Contact(){
+function Contact(props){
+
         return(
             <div className="container">
                 <div className="row">
@@ -46,7 +47,7 @@ function Contact(){
                         <h3>Send us Your Feedback</h3>
                     </div>
                     <div className="col-12 col-md-9">
-                        <ContactForm />
+                        <ContactForm resetFeedbackF={props.resetFeedback} />
                     </div>
                 </div>
             </div>

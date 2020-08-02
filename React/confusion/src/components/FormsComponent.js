@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { LocalForm, Control, Errors} from 'react-redux-form';
-import { Row, Label, Col, Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Input } from 'reactstrap';
+import { LocalForm, Control, Errors, Form} from 'react-redux-form';
+import { Row, Label, Col, Button, Modal, ModalHeader, ModalBody, FormGroup, Input } from 'reactstrap';
 
 const required = (val) => val;
 const minMaxLength = (minLen, maxLen) => (val) => !val || (val.length >= minLen && val.length <= maxLen);
@@ -94,11 +94,12 @@ export class ContactForm extends Component{
     handleSubmit(values) {
         console.log('Current State is: ' + JSON.stringify(values));
         alert('Current State is: ' + JSON.stringify(values));
+        this.props.resetFeedbackF();
     };
 
     render(){
         return(
-            <LocalForm onSubmit={(value) => this.handleSubmit(value)}>
+            <Form model="feedback" onSubmit={(value) => this.handleSubmit(value)}>
             <Row className="form-group">
             <Label htmlFor="firstName" md={2}>First Name</Label>
                 <Col md={10}>
@@ -199,7 +200,7 @@ export class ContactForm extends Component{
                     <Button type="submit" color="primary">Send Feedback</Button>
                 </Col>
             </Row>
-        </LocalForm>
+        </Form>
         )
     }
 };

@@ -1,4 +1,5 @@
 import { addComment, fetshDishes } from './actionsCreator';
+import { actions } from 'react-redux-form';
 
 //Connect the app to the Redux Store 
 export const mapStateToProps = (x) =>{
@@ -17,5 +18,7 @@ export const mapStateToProps = (x) =>{
   export const mapDispatchToProps = (dispatch) =>({
       addComment: (dishId, rating, author, comment) => dispatch(addComment(dishId, rating, author, comment)),
 //This is for connect to the store but this time using a Redux-thunk function...
-      fetshDishes: () => dispatch(fetshDishes())
+      fetshDishes: () => dispatch(fetshDishes()),
+//This is to reset the feedback Form in contact us page
+      resetFeedbackForm: () => dispatch(actions.reset("feedback"))
   })
