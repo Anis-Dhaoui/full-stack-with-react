@@ -7,15 +7,15 @@ export const Dishes = (state = {isLoading: true, errMsg: null, mountedDishes: []
                 ...state, isLoading: false, errMsg: null, mountedDishes: action.payload
             };
 
-        // case actiontype.DISHES_LOADING:
-        //     return{
-        //         ...state, isLoading: true, errMsg: null, mountedDishes: []
-        //     };
+        case actiontype.DISHES_LOADING:
+            return{
+                ...state, isLoading: true, errMsg: null, mountedDishes: []
+            };
 
-        // case actiontype.DISHES_FAILED:
-        //     return{
-        //         ...state, isLoading: false, errMsg: action.payload, mountedDishes: []
-        //     };
+        case actiontype.DISHES_FAILED:
+            return{
+                ...state, isLoading: false, errMsg: action.payload, mountedDishes: []
+            };
         
         default:
             return state;

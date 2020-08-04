@@ -1,13 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardImg, CardImgOverlay, CardTitle, CardSubtitle, CardBody, CardText, Media } from 'reactstrap';
-
+import { baseUrl } from '../shared/baseURL';
+import { Loading } from './LoadingComponent';
 
 //This Component for the Home Page
-export function RenderCard({item}) {
+export function RenderCard({item, dl, em}) {
+    if(dl){
+        return(
+                <Loading />
+        );
+    } else if(em){
+        return(
+            <h4>Error Message By Anis</h4>
+        );
+    }else  
     return(
         <Card>
-            <CardImg src={item.image} alt={item.name} />
+            <CardImg src={baseUrl + item.image} alt={item.name} />
             <CardBody>
                 <CardTitle>{item.name}</CardTitle>
                 {item.designation ? <CardSubtitle>{item.designation}</CardSubtitle> : null}
@@ -40,7 +50,7 @@ export function RenderMenuItem({dishx}) {
     return(
       <Link to={`/menu/${dishx.id}`}>
         <Card key={dishx.id}>
-            <CardImg width="100%" src={dishx.image} alt={dishx.name} />
+            <CardImg width="100%" src={baseUrl + dishx.image} alt={dishx.name} />
             <CardImgOverlay>
                 <CardTitle>{dishx.name}</CardTitle>
             </CardImgOverlay>
@@ -54,7 +64,7 @@ export function RenderMenuItem({dishx}) {
 export function RenderDish ({dish}){
             return (
                 <Card>
-                    <CardImg with="100%" src={dish.image} alt={dish.name} />
+                    <CardImg with="100%" src={baseUrl + dish.image} alt={dish.name} />
                     <CardBody>
                         <CardTitle>{dish.name}</CardTitle>
                         <CardText>{dish.description}</CardText>

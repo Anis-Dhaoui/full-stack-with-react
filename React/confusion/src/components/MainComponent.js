@@ -13,8 +13,10 @@ import { mapStateToProps, mapDispatchToProps } from '../redux/connectStore';
 class Main extends Component {
 
   componentDidMount(){
-    this.props.fetshDishes();
-  }
+    this.props.fetchDishes();
+    this.props.fetchPromotions();
+    this.props.fetchComments();
+  };
   
   render(){
     const homePage = () =>{
@@ -22,7 +24,9 @@ class Main extends Component {
         <Home dish={this.props.dishes.mountedDishes.filter((dishItem) => dishItem.featured)[0]}
               dishesLoading={this.props.dishes.isLoading}
               dishesErrorMsg={this.props.dishes.errMsg}
-              promo={this.props.promotions.filter((promoItem) => promoItem.featured)[0]} 
+              promo={this.props.promotions.mountedPromotions.filter((promoItem) => promoItem.featured)[0]} 
+              promoLoading={this.props.promotions.isLoading}
+              promoErrorMsg={this.props.promotions.errMsg}
               leader={this.props.leaders.filter((leaderItem) => leaderItem.featured)[0]}
         />
       );
@@ -33,14 +37,17 @@ class Main extends Component {
         <DishDetail dish={this.props.dishes.mountedDishes.filter((ddItem) =>  ddItem.id === parseInt(match.params.dishIdx, 10))[0]}
                     loading={this.props.dishes.isLoading}
                     errorMsg={this.props.dishes.errMsg}
-                    cmnts={this.props.comments.filter((cmntsItem) => cmntsItem.dishId === parseInt(match.params.dishIdx, 10))}
-                    addCmnt={this.props.addComment}
+                    cmnts={this.props.comments.mountedComments.filter((cmntsItem) => cmntsItem.dishId === parseInt(match.params.dishIdx, 10))}
+                    cmntsErrorMsg={this.props.comments.errMsg}
+                    postCmnt={this.props.postComment}
         />
       );
       
     };
   return (
     <div>
+    {console.log(this.props.promotions)}
+    {console.log(this.props.dishes)}
       <Header />
       <div className="container">
         <Switch>
