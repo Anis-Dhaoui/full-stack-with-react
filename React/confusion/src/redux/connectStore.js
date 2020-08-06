@@ -14,8 +14,8 @@ export const mapStateToProps = (x) =>{
 
 
   
-//This Dispatch Function help us to Connect the action "addComment" function with the Reducer function "Comments"
   export const mapDispatchToProps = (dispatch) =>({
+//This helps us to Connect the action "addComment" function with the Reducer function "Comments"
       postComment: (dishId, rating, author, comment) => dispatch(postComment(dishId, rating, author, comment)),
 //This is for connecting to the store but this time using a Redux-thunk function...
       fetchDishesx: () => dispatch(fetchDishes()),

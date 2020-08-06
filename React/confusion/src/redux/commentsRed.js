@@ -4,8 +4,6 @@ export const Comments = (state = {errMsg: null, mountedComments: []}, action) =>
     switch(action.type){
         case actiontype.POST_COMMENT:
             var comment = action.payload;
-            comment.id = state.mountedComments.length;
-            comment.date = new Date().toISOString();
             return {...state, mountedComments: state.mountedComments.concat(comment)};
 
         case actiontype.ADD_COMMENTS:
