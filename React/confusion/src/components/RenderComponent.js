@@ -12,8 +12,14 @@ export function RenderCard({item, dl, em}) {
         );
     } else if(em){
         return(
-            <h4>Error Message By Anis</h4>
-        );
+                <div className="container py-4 my-4">
+                    <div className="row justify-content-center">
+                        <div className="col-auto my-4">
+                            <h4>{em}</h4>
+                        </div>
+                    </div>
+                </div>
+            );
     }else  
     return(
         <Card>
@@ -74,7 +80,12 @@ export function RenderDish ({dish}){
 };
 
  //This Component for the menu item Comments in the Menu Page that exported to the DishdetailComponet file
-export function RenderComments ({cmnts}) {
+export function RenderComments ({cmnts, em}) {
+    if(em){
+        return(
+            <h4>{em}</h4>
+        )
+    }else{
         let comment = cmnts.map((item) =>{
             let splittedDate = item.date.split("-");
             let finalDate = new Date(splittedDate[0], splittedDate[1] - 1, splittedDate[2].slice(0,2)).toDateString();
@@ -91,4 +102,5 @@ export function RenderComments ({cmnts}) {
                 {comment}
             </div>
         )
+    }
 };

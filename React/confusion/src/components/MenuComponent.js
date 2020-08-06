@@ -19,7 +19,13 @@ const Menu = (props) => {
       );
   }else if(props.dishes2.errMsg){
     return(
-        <h4>Error Message By Anis</h4>
+      <div className="container py-4 my-4">
+          <div className="row justify-content-center">
+              <div className="col-auto my-4">
+                  <h4>{props.dishes2.errMsg}</h4>
+              </div>
+          </div>
+      </div>
     )
   }else
  return (

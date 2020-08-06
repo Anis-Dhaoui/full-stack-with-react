@@ -13,7 +13,7 @@ import { mapStateToProps, mapDispatchToProps } from '../redux/connectStore';
 class Main extends Component {
 
   componentDidMount(){
-    this.props.fetchDishes();
+    this.props.fetchDishesx();
     this.props.fetchPromotions();
     this.props.fetchComments();
   };
