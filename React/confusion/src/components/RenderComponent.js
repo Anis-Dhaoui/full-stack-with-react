@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Card, CardImg, CardImgOverlay, CardTitle, CardSubtitle, CardBody, CardText, Media } from 'reactstrap';
 import { baseUrl } from '../shared/baseURL';
 import { Loading } from './LoadingComponent';
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
 //This Component for the Home Page
 export function RenderCard({item, dl, em}) {
@@ -12,6 +13,7 @@ export function RenderCard({item, dl, em}) {
         );
     } else if(em){
         return(
+            <FadeTransform in tranformProps={{exitTransform: 'scale(0.5) translateY(-50%)'}} >
                 <div className="container py-4 my-4">
                     <div className="row justify-content-center">
                         <div className="col-auto my-4">
@@ -19,7 +21,8 @@ export function RenderCard({item, dl, em}) {
                         </div>
                     </div>
                 </div>
-            );
+            </FadeTransform>
+        );
     }else  
     return(
         <Card>
@@ -69,13 +72,15 @@ export function RenderMenuItem({dishx}) {
  //This Component for the menu item Description in the Menu Page that exported to the DishdetailComponet file
 export function RenderDish ({dish}){
             return (
-                <Card>
-                    <CardImg with="100%" src={baseUrl + dish.image} alt={dish.name} />
-                    <CardBody>
-                        <CardTitle>{dish.name}</CardTitle>
-                        <CardText>{dish.description}</CardText>
-                    </CardBody>
-                </Card>
+                <FadeTransform in tranformProps={{exitTransform: 'scale(0.5) translateY(-50%)'}} >
+                    <Card>
+                        <CardImg with="100%" src={baseUrl + dish.image} alt={dish.name} />
+                        <CardBody>
+                            <CardTitle>{dish.name}</CardTitle>
+                            <CardText>{dish.description}</CardText>
+                        </CardBody>
+                    </Card>
+                </FadeTransform>
             )
 };
 
@@ -86,21 +91,22 @@ export function RenderComments ({cmnts, em}) {
             <h4>{em}</h4>
         )
     }else{
-        let comment = cmnts.map((item) =>{
-            let splittedDate = item.date.split("-");
-            let finalDate = new Date(splittedDate[0], splittedDate[1] - 1, splittedDate[2].slice(0,2)).toDateString();
-            return(
-                <ul className="list-unstyled pb-3">
-                    <li style={{font:"18px Arial, sans-serif"}}>{item.comment}</li>
-                    <li style={{color:"gray"}}> -- <strong>{item.author}, </strong> {finalDate}</li>
-                </ul>
-            )
-        })
         return(
-            <div>
-                <h4 className="pb-4">Comments</h4>
-                {comment}
-            </div>
+            <Stagger in>
+                {cmnts.map((item) =>{
+                    let splittedDate = item.date.split("-");
+                    let finalDate = new Date(splittedDate[0], splittedDate[1] - 1, splittedDate[2].slice(0,2)).toDateString();
+                    return(
+                        <Fade in>
+                            <ul className="list-unstyled pb-3">
+                                <li style={{font:"18px Arial, sans-serif"}}>{item.comment}</li>
+                                <li style={{color:"gray"}}> -- <strong>{item.author}, </strong> {finalDate}</li>
+                            </ul>
+                        </Fade>
+                    )
+                })}
+            </Stagger>
         )
     }
+        
 };
