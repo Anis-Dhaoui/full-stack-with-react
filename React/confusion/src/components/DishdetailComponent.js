@@ -40,7 +40,6 @@ const DishDetail = (props) => {
                         <h4 className="pb-4">Comments</h4>
                         <RenderComments cmnts={props.cmnts} em={props.cmntsErrorMsg} />
                         <CommentForm postCmnt={props.postCmnt} dishId={props.dish.id} />
-
                     </div>
                 </div>
             </div>

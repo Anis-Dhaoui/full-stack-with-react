@@ -224,6 +224,14 @@
       "comment": "ssssssss",
       "date": "2020-08-08T15:17:22.344Z",
       "id": 22
+    },
+    {
+      "dishId": 2,
+      "rating": "5",
+      "author": "Anis dh",
+      "comment": "Testing if mountedComment.concat(action.payload) work or NO",
+      "date": "2020-08-08T22:22:12.949Z",
+      "id": 23
     }
   ],
   "promotions": [
