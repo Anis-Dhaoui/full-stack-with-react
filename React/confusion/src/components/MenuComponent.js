@@ -29,7 +29,7 @@ const Menu = (props) => {
     )
   }else
  return (
-      <>
+      <div className="container">
         <div className="row">
           <div className="col-12">
             <Breadcrumb>
@@ -42,7 +42,7 @@ const Menu = (props) => {
         <div className="row">
               {menu}
         </div>
-      </>
+      </div>
     );
 }
 export default Menu;

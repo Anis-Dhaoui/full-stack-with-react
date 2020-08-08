@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Home from "./HomeComponent";
 import Menu from "./MenuComponent";
@@ -9,6 +9,7 @@ import Footer from './FooterComponent';
 import Contact from './ContactComponent';
 import About from './AboutComponent';
 import { mapStateToProps, mapDispatchToProps } from '../redux/connectStore';
+import { TransitionGroup, CSSTransition} from 'react-transition-group';
 
 class Main extends Component {
 
@@ -44,25 +45,28 @@ class Main extends Component {
       );
       
     };
+
   return (
-    <div>
-    {console.log(this.props.promotions)}
-    {console.log(this.props.dishes)}
+    <>
       <Header />
       <div className="container">
-        <Switch>
-          <Route path="/home" component={homePage} />
-          <Route path="/aboutus" component={  () => <About leaders={this.props.leaders}/>  } />
-          <Route exact path="/menu" component={  () => <Menu dishes2={this.props.dishes} />  } />
-          <Route path="/menu/:dishIdx" component={dishWithId}  />
-          <Route path="/contactus" component={ () => <Contact resetFeedback={this.props.resetFeedbackForm} />} />
-          <Redirect to="/home" />
-        </Switch>
+        <TransitionGroup>
+          <CSSTransition key={this.props.location.key} classNames="page" timeout={300}>
+            <Switch location={this.props.location}>
+              <Route path="/home" component={homePage} />
+              <Route path="/aboutus" component={  () => <About leaders={this.props.leaders}/>  } />
+              <Route exact path="/menu" component={  () => <Menu dishes2={this.props.dishes} />  } />
+              <Route path="/menu/:dishIdx" component={dishWithId}  />
+              <Route path="/contactus" component={ () => <Contact resetFeedback={this.props.resetFeedbackForm} />} />
+              <Redirect to="/home" />
+            </Switch>
+          </CSSTransition>
+        </TransitionGroup>
       </div>
       <Footer />
-    </div>
+    </>
   );
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps) (Main);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps) (Main));
