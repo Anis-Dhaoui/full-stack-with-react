@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { LocalForm, Control, Errors, Form} from 'react-redux-form';
-import { Row, Label, Col, Button, Modal, ModalHeader, ModalBody, FormGroup, Input } from 'reactstrap';
+import { Row, Label, Col, Button, Modal, ModalHeader, ModalBody, FormGroup, Input, Nav, NavItem, Form as ReactstrapForm } from 'reactstrap';
 
 const required = (val) => val;
 const minMaxLength = (minLen, maxLen) => (val) => !val || (val.length >= minLen && val.length <= maxLen);
@@ -32,57 +32,57 @@ export class CommentForm extends Component{
     render(){
         return(
             <div className="mb-5">
-            <Button onClick={this.toggleModal} outline color="success"><span className="fa fa-comment fa-lg"> Comment</span></Button>
-            <Modal isOpen={this.state.isFormOpen} toggle={this.toggleModal}>
-                <ModalHeader toggle={this.toggleModal}>
-                    Submit Comment
-                </ModalHeader>
-                <ModalBody>
-                    <LocalForm onSubmit={value => this.handleSubmit(value)}>
-                        <Row className="form-group">
-                            <Label htmlFor="rating" xs={12}>Rating</Label>
-                            <Col xs={{size: 12, offset: 0}}>
-                                <Control.select model=".rating" id="rating" className="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </Control.select>
+                <Button onClick={this.toggleModal} outline color="success"><span className="fa fa-comment fa-lg"> Comment</span></Button>
+                <Modal isOpen={this.state.isFormOpen} toggle={this.toggleModal}>
+                    <ModalHeader toggle={this.toggleModal}>
+                        Submit Comment
+                    </ModalHeader>
+                    <ModalBody>
+                        <LocalForm onSubmit={value => this.handleSubmit(value)}>
+                            <Row className="form-group">
+                                <Label htmlFor="rating" xs={12}>Rating</Label>
+                                <Col xs={{size: 12, offset: 0}}>
+                                    <Control.select model=".rating" id="rating" className="form-control">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </Control.select>
+                                </Col>
+                            </Row>
+                            <Row className="form-group">
+                                <Label htmlFor="author" xs={12}>Your name</Label>
+                                <Col xs={12}>
+                                    <Control.text model=".author" id="author" placeholder="Your name" className="form-control"
+                                        validators={{
+                                            required, minMaxLength: minMaxLength(3, 15)
+                                        }}
+                                    />
+                                    <Errors className="text-danger" 
+                                        model=".author"
+                                        show="touched"
+                                        messages={{
+                                            required: "Required field",
+                                            minMaxLength: "Enter a valid name"
+                                        }}
+                                    />
+                                </Col>
+                            </Row>
+                            <Row className="form-group">
+                                <Label htmlfor="comment" xs={12}>Comment</Label>
+                                <Col xs={12}>
+                                    <Control.textarea model=".comment" id="comment" placeholder="Type your comment here" rows="6" className="form-control" />
+                                </Col>
+                            </Row> 
+                            <Row className="form-group">
+                            <Col xs={{size: 3, offset:4}}>
+                                <Button type="submit" color="primary">Submit</Button>
                             </Col>
-                        </Row>
-                        <Row className="form-group">
-                            <Label htmlFor="author" xs={12}>Your name</Label>
-                            <Col xs={12}>
-                                <Control.text model=".author" id="author" placeholder="Your name" className="form-control"
-                                    validators={{
-                                        required, minMaxLength: minMaxLength(3, 15)
-                                    }}
-                                />
-                                <Errors className="text-danger" 
-                                    model=".author"
-                                    show="touched"
-                                    messages={{
-                                        required: "Required field",
-                                        minMaxLength: "Enter a valid name"
-                                    }}
-                                />
-                            </Col>
-                        </Row>
-                        <Row className="form-group">
-                            <Label htmlfor="comment" xs={12}>Comment</Label>
-                            <Col xs={12}>
-                                <Control.textarea model=".comment" id="comment" placeholder="Type your comment here" rows="6" className="form-control" />
-                            </Col>
-                        </Row> 
-                        <Row className="form-group">
-                        <Col xs={{size: 3, offset:4}}>
-                            <Button type="submit" color="primary">Submit</Button>
-                        </Col>
-                        </Row>                      
-                    </LocalForm>
-                </ModalBody>
-            </Modal>
+                            </Row>                      
+                        </LocalForm>
+                    </ModalBody>
+                </Modal>
             </div>
             )
     }
@@ -209,39 +209,58 @@ export class ContactForm extends Component{
 export class LoginForm extends Component{
     constructor(props){
         super(props);
+        this.state = {
+            isModalOpen: false
+        }
         
         this.handleLogin = this.handleLogin.bind(this);
-      };
-        
+        this.toggleModal = this.toggleModal.bind(this);
+    };
+
+    toggleModal(){
+        this.setState({
+        isModalOpen: !this.state.isModalOpen
+        })
+    };
+
     handleLogin(event){
         alert("User Name: " + this.user.value + " Password: " + this.pwd.value + " Remember: " + this.remember.checked);
         event.preventDefault();
+        this.toggleModal();
     };
     
     render(){
         return(
-            <>
-                <ModalHeader>Login</ModalHeader>
-                <ModalBody>
-                    <Form onSubmit={this.handleLogin}>
-                        <FormGroup>
-                            <Label htmlFor="username">User Name:</Label>
-                            <Input type="text" name="username" id="username" innerRef={(userInput) => this.user = userInput} />
-                        </FormGroup>
-                        <FormGroup>
-                            <Label htmlFor="password">Password:</Label>
-                            <Input type="password" name="password" id="password" innerRef={(userInput) => this.pwd = userInput} />
-                        </FormGroup>
-                        <FormGroup check>
-                            <Label check>
-                                <Input type="checkbox" name="rememberMe" innerRef={(userInput) => this.remember = userInput} />Remember Me
-                            </Label>
-                        </FormGroup>
-                        <Button type="submit" color="primary">Login</Button>     
-                    </Form>
-                </ModalBody>
-          </>
-    
+            <React.Fragment>
+                <Nav className="ml-auto" navbar onClick={this.toggleModal}>
+                    <NavItem className="ml-5">
+                        <Button outline color="primary"><span className="fa fa-sign-in fa-lg"> Login</span></Button>
+                    </NavItem>
+                </Nav>
+
+                <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+                    <ModalHeader toggle={this.toggleModal}>Login</ModalHeader>
+
+                    <ModalBody>
+                        <ReactstrapForm onSubmit={this.handleLogin}>
+                            <FormGroup>
+                                <Label htmlFor="username">User Name:</Label>
+                                <Input type="text" name="username" id="username" innerRef={(userInput) => this.user = userInput} />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label htmlFor="password">Password:</Label>
+                                <Input type="password" name="password" id="password" innerRef={(userInput) => this.pwd = userInput} />
+                            </FormGroup>
+                            <FormGroup check>
+                                <Label check>
+                                    <Input type="checkbox" name="rememberMe" innerRef={(userInput) => this.remember = userInput} />Remember Me
+                                </Label>
+                            </FormGroup>
+                            <Button type="submit" color="primary">Login</Button>     
+                        </ReactstrapForm>
+                    </ModalBody>
+                </Modal>
+            </React.Fragment>
         )
     }
 };

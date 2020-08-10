@@ -15,6 +15,7 @@ export const ConfigStore = () =>{
       comments: Comments,
       leaders: Leaders,
       promotions: Promotions,
+
       ...createForms({
         feedback: initialFeedback
       })

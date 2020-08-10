@@ -232,6 +232,14 @@
       "comment": "Testing if mountedComment.concat(action.payload) work or NO",
       "date": "2020-08-08T22:22:12.949Z",
       "id": 23
+    },
+    {
+      "dishId": 1,
+      "rating": "2",
+      "author": "ddddddd",
+      "comment": "ssssssss",
+      "date": "2020-08-10T15:28:09.463Z",
+      "id": 24
     }
   ],
   "promotions": [
