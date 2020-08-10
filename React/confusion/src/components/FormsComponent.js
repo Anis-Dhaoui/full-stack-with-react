@@ -231,36 +231,27 @@ export class LoginForm extends Component{
     
     render(){
         return(
-            <React.Fragment>
-                <Nav className="ml-auto" navbar onClick={this.toggleModal}>
-                    <NavItem className="ml-5">
-                        <Button outline color="primary"><span className="fa fa-sign-in fa-lg"> Login</span></Button>
-                    </NavItem>
-                </Nav>
-
-                <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
-                    <ModalHeader toggle={this.toggleModal}>Login</ModalHeader>
-
-                    <ModalBody>
-                        <ReactstrapForm onSubmit={this.handleLogin}>
-                            <FormGroup>
-                                <Label htmlFor="username">User Name:</Label>
-                                <Input type="text" name="username" id="username" innerRef={(userInput) => this.user = userInput} />
-                            </FormGroup>
-                            <FormGroup>
-                                <Label htmlFor="password">Password:</Label>
-                                <Input type="password" name="password" id="password" innerRef={(userInput) => this.pwd = userInput} />
-                            </FormGroup>
-                            <FormGroup check>
-                                <Label check>
-                                    <Input type="checkbox" name="rememberMe" innerRef={(userInput) => this.remember = userInput} />Remember Me
-                                </Label>
-                            </FormGroup>
-                            <Button type="submit" color="primary">Login</Button>     
-                        </ReactstrapForm>
-                    </ModalBody>
-                </Modal>
-            </React.Fragment>
+            <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+                <ModalHeader toggle={this.toggleModal}>Login</ModalHeader>
+                <ModalBody>
+                    <ReactstrapForm onSubmit={this.handleLogin}>
+                        <FormGroup>
+                            <Label htmlFor="username">User Name:</Label>
+                            <Input type="text" name="username" id="username" innerRef={(userInput) => this.user = userInput} />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label htmlFor="password">Password:</Label>
+                            <Input type="password" name="password" id="password" innerRef={(userInput) => this.pwd = userInput} />
+                        </FormGroup>
+                        <FormGroup check>
+                            <Label check>
+                                <Input type="checkbox" name="rememberMe" innerRef={(userInput) => this.remember = userInput} />Remember Me
+                            </Label>
+                        </FormGroup>
+                        <Button type="submit" color="primary">Login</Button>     
+                    </ReactstrapForm>
+                </ModalBody>
+            </Modal>
         )
     }
 };

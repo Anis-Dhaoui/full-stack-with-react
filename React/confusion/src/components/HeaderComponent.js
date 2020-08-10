@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Nav, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, Jumbotron, Button} from 'reactstrap';
+import {Nav, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, Jumbotron, Button } from 'reactstrap';
 import {NavLink} from 'react-router-dom';
 import { LoginForm } from './FormsComponent';
 
@@ -19,6 +19,14 @@ class Header extends Component{
     })
   };
 
+  toggleModalRef = ({toggleModal}) =>{
+    this.showModal = toggleModal;
+  };
+
+  onLoginClick = () =>{
+    this.showModal()
+  };
+  
   render(){
     return(
       <React.Fragment>
@@ -43,7 +51,11 @@ class Header extends Component{
                       <NavLink className="nav-link" to="/contactus"> <span className="fa fa-address-card fa-lg"></span> Contact Us</NavLink>
                     </NavItem>
                   </Nav>
-                  <LoginForm />
+                  <Nav className="ml-auto" navbar onClick={this.onLoginClick}>
+                    <NavItem className="ml-5">
+                        <Button outline color="primary"><span className="fa fa-sign-in fa-lg"> Login</span></Button>
+                    </NavItem>
+                  </Nav>
                 </Collapse>
             </div>
         </Navbar>
@@ -60,6 +72,7 @@ class Header extends Component{
               </div>
           </div>
         </Jumbotron>
+        <LoginForm ref={this.toggleModalRef} />
       </React.Fragment>
     )
   }
