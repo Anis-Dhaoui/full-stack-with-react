@@ -47,7 +47,7 @@ function Contact(props){
                     <h3>Send us Your Feedback</h3>
                 </div>
                 <div className="col-12 col-md-9">
-                        <ContactForm resetFeedbackF={props.resetFeedback} />
+                        <ContactForm postFeedback={props.postFeedback} resetFeedbackF={props.resetFeedback} />
                 </div>
             </div>
         </div>

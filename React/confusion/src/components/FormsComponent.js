@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { LocalForm, Control, Errors, Form} from 'react-redux-form';
-import { Row, Label, Col, Button, Modal, ModalHeader, ModalBody, FormGroup, Input, Nav, NavItem, Form as ReactstrapForm } from 'reactstrap';
+import { Row, Label, Col, Button, Modal, ModalHeader, ModalBody, FormGroup, Input, Form as ReactstrapForm } from 'reactstrap';
 
 const required = (val) => val;
 const minMaxLength = (minLen, maxLen) => (val) => !val || (val.length >= minLen && val.length <= maxLen);
@@ -92,8 +92,8 @@ export class CommentForm extends Component{
 export class ContactForm extends Component{
 
     handleSubmit(values) {
+        this.props.postFeedback(JSON.parse(JSON.stringify(values)));
         console.log('Current State is: ' + JSON.stringify(values));
-        alert('Current State is: ' + JSON.stringify(values));
         this.props.resetFeedbackF();
     };
 

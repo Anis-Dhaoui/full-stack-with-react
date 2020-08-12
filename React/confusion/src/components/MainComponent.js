@@ -14,6 +14,7 @@ import { TransitionGroup, CSSTransition} from 'react-transition-group';
 class Main extends Component {
 
   componentDidMount(){
+    this.props.fetchLeaders();
     this.props.fetchDishesx();
     this.props.fetchPromotions();
     this.props.fetchComments();
@@ -28,7 +29,10 @@ class Main extends Component {
               promo={this.props.promotions.mountedPromotions.filter((promoItem) => promoItem.featured)[0]} 
               promoLoading={this.props.promotions.isLoading}
               promoErrorMsg={this.props.promotions.errMsg}
-              leader={this.props.leaders.filter((leaderItem) => leaderItem.featured)[0]}
+              leader={this.props.leaders.mountedLeaders.filter((leaderItem) => leaderItem.featured)[0]}
+              leadersLoading={this.props.leaders.isLoading}
+              leadersErrorMsg={this.props.leaders.errMsg}
+
         />
       );
     };
@@ -54,10 +58,10 @@ class Main extends Component {
           <CSSTransition key={this.props.location.key} classNames="page" timeout={300}>
             <Switch location={this.props.location}>
               <Route path="/home" component={homePage} />
-              <Route path="/aboutus" component={  () => <About leaders={this.props.leaders}/>  } />
+              <Route path="/aboutus" component={  () => <About leaders={this.props.leaders.mountedLeaders}/>  } />
               <Route exact path="/menu" component={  () => <Menu dishes2={this.props.dishes} />  } />
               <Route path="/menu/:dishIdx" component={dishWithId}  />
-              <Route path="/contactus" component={ () => <Contact resetFeedback={this.props.resetFeedbackForm} />} />
+              <Route path="/contactus" component={ () => <Contact postFeedback={this.props.postFeedback} resetFeedback={this.props.resetFeedbackForm} />} />
               <Redirect to="/home" />
             </Switch>
           </CSSTransition>

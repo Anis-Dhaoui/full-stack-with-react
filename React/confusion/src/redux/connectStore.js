@@ -1,4 +1,4 @@
-import { postComment, fetchDishes, fetchComments, fetchPromotions } from './actionsCreator';
+import { postComment, fetchDishes, fetchComments, fetchPromotions, fetchLeaders, postFeedback } from './actionsCreator';
 import { actions } from 'react-redux-form';
 
 //Connect the app to the Redux Store 
@@ -24,5 +24,9 @@ export const mapStateToProps = (x) =>{
 //This is for connecting to the store in order to fetch the comments from db.json file
       fetchComments: () => dispatch(fetchComments()),
 //This is for connecting to the store in order to fetch the promotions from db.json file
-      fetchPromotions: () => dispatch(fetchPromotions())
+      fetchPromotions: () => dispatch(fetchPromotions()),
+//This is for connecting to the store in order to fetch the leaders from db.json file
+      fetchLeaders: () => dispatch(fetchLeaders()),
+//This for posting the feedback form's data to the server 
+      postFeedback: (feedbackObj) => dispatch(postFeedback(feedbackObj))
   });

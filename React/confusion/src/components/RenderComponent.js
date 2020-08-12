@@ -37,22 +37,47 @@ export function RenderCard({item, dl, em}) {
 };
 
 //This Component for the About Page
+// export function RenderLeader({leader}){
+//     return(
+//         <div key={leader.id} className="mt-3">
+//             <Media tag="li">
+//                 <Media left middle>
+//                     <img object className="mt-2" src={baseUrl + leader.image} alt={leader.name}/>
+//                 </Media>
+//                 <Media body className="ml-4">
+//                     <Media heading>{leader.name}</Media>
+//                     <Media className="my-2">{leader.designation}</Media>
+//                     <p className="pr-4">{leader.description}</p>
+//                 </Media>
+//             </Media>
+//         </div>
+//     )
+// };
 export function RenderLeader({leader}){
     return(
-        <div key={leader.id} className="mt-3">
-            <Media tag="li">
-                <Media left middle>
-                    <img object className="mt-2" src={leader.image} alt={leader.name}/>
-                </Media>
-                <Media body className="ml-4">
-                    <Media heading>{leader.name}</Media>
-                    <Media className="my-2">{leader.designation}</Media>
-                    <p className="pr-4">{leader.description}</p>
-                </Media>
-            </Media>
-        </div>
+        <Stagger in chunk={4} duration={1500} delay={500}>
+            {leader.map((leaderItem) =>{
+                    return(
+                        <Fade in>
+                            <div key={leaderItem.id} className="mt-3">
+                                <Media tag="li">
+                                    <Media left middle>
+                                        <img object className="mt-2" src={baseUrl + leaderItem.image} alt={leaderItem.name}/>
+                                    </Media>
+                                    <Media body className="ml-4">
+                                        <Media heading>{leaderItem.name}</Media>
+                                        <Media className="my-2">{leaderItem.designation}</Media>
+                                        <p className="pr-4">{leaderItem.description}</p>
+                                    </Media>
+                                </Media>
+                            </div>
+                        </Fade>
+                    )
+                })}
+        </Stagger>
     )
 };
+
 
 //This Component for the Menu Page
 export function RenderMenuItem({dishx}) {  

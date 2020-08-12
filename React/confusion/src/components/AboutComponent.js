@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom';
 
 function About(props) {
 
-    const eachLeader = props.leaders.map((leaderItem) => {
-        return(
-            <RenderLeader leader={leaderItem} />
-        )
-    });
+    // const eachLeader = props.leaders.map((leaderItem) => {
+    //     return(
+    //         <RenderLeader leader={leaderItem} />
+    //     )
+    // });
 
     return(
         <div className="container">
@@ -69,7 +69,8 @@ function About(props) {
                 </div>
                 <div className="col-12">
                     <Media list>
-                        {eachLeader}
+                        {/* {eachLeader} */}
+                        <RenderLeader leader={props.leaders} />
                     </Media>
                 </div>
             </div>

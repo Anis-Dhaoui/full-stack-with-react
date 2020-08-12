@@ -1,6 +1,7 @@
 import * as actiontype  from './actionsType';
 import { baseUrl } from '../shared/baseURL';
 
+//Post new comment action
 export const addPostedComment = (comment) =>({
     type: actiontype.POST_COMMENT,
     payload: comment
@@ -61,7 +62,6 @@ export const fetchDishes = ()=> (dispatch)=>{
             response2 =>{
                 var errMess = new Error(response2.message + ", Check The Server");
                 throw errMess; 
-            
             }
         )
         .then(response => response.json())
@@ -135,3 +135,77 @@ export const promosFailed =(errMsg)=>({
     type: actiontype.PROMOS_FAILED,
     payload: errMsg
 });
+
+//Add Leaders action
+export const addLeaders = (leaders) =>({
+    type: actiontype.ADD_LEADERS,
+    payload: leaders
+});
+
+export const fetchLeaders = () => (dispatch) =>{
+    dispatch(leadersLoading())
+
+    return fetch(baseUrl + "leaders")
+    .then(response =>{
+        if(response.ok){
+            return response;
+        }else{
+            let error = new Error('Error ' + response.status + ': ' + response.statusText);
+            throw error;
+        }
+    },
+    response2 =>{
+        var errMess = new Error(response2.message + ", Check The Server");
+        throw errMess; 
+    })
+    .then(response => response.json())
+    .then(leaders => dispatch(addLeaders(leaders)))
+    .catch(error => dispatch(leadersFailed(error.message)));
+};
+
+export const leadersLoading = () =>({
+    type: actiontype.LEADERS_LOADING,
+});
+
+export const leadersFailed = (errMsg) =>({
+    type: actiontype.LEADERS_FAILED,
+    payload: errMsg
+});
+
+//Post Feedback action
+export const addPostedFeedback = (feedback) =>({
+    type: actiontype.POST_FEEDBACK,
+    payload: feedback
+});
+
+export const postFeedback = (feedbackObj) => (dispatch) =>{
+    
+    return fetch(baseUrl + 'feedback', {
+        method: 'POST',
+        body: JSON.stringify(feedbackObj),
+        headers: { "Content-Type": "application/json" },
+        credentials: "same-origin"
+
+    })
+    .then(response => {
+        if(response.ok){
+            return response;
+        }else{
+            var error = new Error('Error ' + response.status + ': ' + response.statusText);
+            throw error;
+        }
+    },
+    response2 =>{
+        var errMsg = new Error("Check your Internet connection\n" + response2.message);
+        throw errMsg;
+    })
+    .then(response => response.json())
+    .then(feedback => {
+            dispatch(addPostedFeedback(feedback));
+            alert("Thank you! Your feedback is highly appreciated");
+        })
+    .catch(error =>{
+             console.log("Error message" + error.message);
+             alert("Unfortunately your feedback couldn't be sent");
+        })
+}
