@@ -13,7 +13,6 @@ export function RenderCard({item, dl, em}) {
         );
     } else if(em){
         return(
-            <FadeTransform in tranformProps={{exitTransform: 'scale(0.5) translateY(-50%)'}} >
                 <div className="container py-4 my-4">
                     <div className="row justify-content-center">
                         <div className="col-auto my-4">
@@ -21,18 +20,19 @@ export function RenderCard({item, dl, em}) {
                         </div>
                     </div>
                 </div>
-            </FadeTransform>
         );
     }else  
     return(
-        <Card>
-            <CardImg src={baseUrl + item.image} alt={item.name} />
-            <CardBody>
-                <CardTitle>{item.name}</CardTitle>
-                {item.designation ? <CardSubtitle>{item.designation}</CardSubtitle> : null}
-                <CardText>{item.description}</CardText>
-            </CardBody>
-        </Card>
+        <FadeTransform in duration={1200} delay={100} transformProps={{exitTransform: 'scale(0.5) translateY(-50%)'}} >
+            <Card>
+                <CardImg src={baseUrl + item.image} alt={item.name} />
+                <CardBody>
+                    <CardTitle>{item.name}</CardTitle>
+                    {item.designation ? <CardSubtitle>{item.designation}</CardSubtitle> : null}
+                    <CardText>{item.description}</CardText>
+                </CardBody>
+            </Card>
+        </FadeTransform>
     );
 };
 
